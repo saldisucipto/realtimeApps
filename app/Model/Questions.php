@@ -4,9 +4,17 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Model\Reply;
+use App\Model\Category;
+
+
 class Questions extends Model
 {
     // Make Relationship 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Questions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class QuestionsController extends Controller
 {
@@ -29,15 +31,14 @@ class QuestionsController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\Questions  $questions
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Questions $questions)
+    public function show(Questions $questions, $slug)
     {
-        //
+        // get data with binding 
+        // $data = Questions::find($slug);
+        // return $data;
+        return Questions::where('slug', $slug)->first();
+       
+        
     }
 
     /**
@@ -58,8 +59,11 @@ class QuestionsController extends Controller
      * @param  \App\Model\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Questions $questions)
+    public function destroy(Questions $questions, $slug)
     {
-        //
+       $data = Questions::where('slug', $slug)->first();
+       // dd($data);
+       $data->delete();
+       return \response('Has Delete');
     }
 }
