@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Model\Questions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Response;
 use App\User;
+use App\Http\Resources\QuestionsResource;
+
 
 class QuestionsController extends Controller
 {
@@ -17,7 +20,8 @@ class QuestionsController extends Controller
     public function index()
     {
         //get Data For Question 
-        return Questions::latest()->get();
+        $data = Questions::latest()->get();
+        return QuestionsResource::collection($data);
     }
 
      /**
@@ -29,6 +33,7 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         //
+        Questions::create($request->all());
     }
 
     public function show(Questions $questions, $slug)
@@ -36,7 +41,8 @@ class QuestionsController extends Controller
         // get data with binding 
         // $data = Questions::find($slug);
         // return $data;
-        return Questions::where('slug', $slug)->first();
+        $data = Questions::where('slug', $slug)->first();
+        return new QuestionsResource($data);
        
         
     }

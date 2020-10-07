@@ -26,4 +26,12 @@ class Questions extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    protected $guarded = [];
+
+
+    // atribute yuntuk url
+    public function getPathAttribute(){
+        return asset("api/questions/$this->slug");
+    }
 }
