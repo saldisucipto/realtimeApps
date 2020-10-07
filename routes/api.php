@@ -17,4 +17,6 @@
 //     return $request->user();
 // });
 
-Route::apiResource('questions', 'QuestionsController');
+Route::apiResource('/questions', 'QuestionsController');
+Route::apiResource('/category', 'CategoryController');
+
