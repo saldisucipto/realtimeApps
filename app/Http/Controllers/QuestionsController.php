@@ -14,20 +14,11 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        //
+        //get Data For Question 
+        return Questions::latest()->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -45,17 +36,6 @@ class QuestionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Questions $questions)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Questions  $questions
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Questions $questions)
     {
         //
     }
