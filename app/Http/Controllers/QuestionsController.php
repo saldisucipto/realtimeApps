@@ -54,9 +54,14 @@ class QuestionsController extends Controller
      * @param  \App\Model\Questions  $questions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questions $questions)
+    public function update(Request $request, Questions $questions, $slug)
     {
         //
+        $data = Questions::where('slug', $slug)->first();
+       // dd($data);
+        
+        $data->update($request->all());
+        return \request('Update', Response::HTTP_ACCEPTED);
     }
 
     /**
