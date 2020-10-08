@@ -19,4 +19,4 @@
 
 Route::apiResource('/questions', 'QuestionsController');
 Route::apiResource('/category', 'CategoryController');
-
+Route::apiResource('/questions/{question}/reply', 'ReplyController');

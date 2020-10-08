@@ -36,13 +36,21 @@ class QuestionsController extends Controller
         Questions::create($request->all());
     }
 
-    public function show(Questions $questions, $slug)
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Model\Questions  $questions
+     * @return \Illuminate\Http\Response
+     */
+
+    public function show(Questions $question)
     {
         // get data with binding 
         // $data = Questions::find($slug);
         // return $data;
-        $data = Questions::where('slug', $slug)->first();
-        return new QuestionsResource($data);
+        // $data = Questions::where('slug', $slug)->first();
+        // return new QuestionsResource($data);
+        return new QuestionsResource($question);
        
         
     }

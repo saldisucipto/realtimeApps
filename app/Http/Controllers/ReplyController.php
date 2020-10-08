@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Reply;
 use Illuminate\Http\Request;
+use App\Model\Questions;
+
 
 class ReplyController extends Controller
 {
@@ -12,9 +14,12 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Questions $question)
     {
-        //
+        // cek koneksi
+        // return $question;
+       // return Reply::latest()->get();
+        return $question->replies;
     }
 
     /**
@@ -44,9 +49,10 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function show(Reply $reply)
+    public function show(Questions $question, Reply $reply)
     {
         //
+        return $reply;
     }
 
     /**
