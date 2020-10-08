@@ -6,6 +6,8 @@ use App\Model\Reply;
 use Illuminate\Http\Request;
 use App\Model\Questions;
 use Illuminate\Support\Facades\Response;
+use App\Http\Resources\ReplyResource;
+
 
 
 class ReplyController extends Controller
@@ -20,7 +22,7 @@ class ReplyController extends Controller
         // cek koneksi
         // return $question;
        // return Reply::latest()->get();
-        return $question->replies;
+        return ReplyResource::collection($question->replies);
     }
 
     /**
@@ -43,7 +45,7 @@ class ReplyController extends Controller
     {
         //store method 
         $reply = $question->replies()->create($request->all());
-        return \response(['reply' => $reply]);
+        return \response(['reply' => new ReplyResource($reply)]);
     }
 
     /**
@@ -55,7 +57,7 @@ class ReplyController extends Controller
     public function show(Questions $question, Reply $reply)
     {
         //
-        return $reply;
+        return new ReplyResource($reply);
     }
 
     /**
