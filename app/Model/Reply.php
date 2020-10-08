@@ -20,4 +20,6 @@ class Reply extends Model
     }
 
     protected $table = 'replies';
+
+    protected $guarded = [];
 }

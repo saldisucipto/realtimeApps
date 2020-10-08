@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Reply;
 use Illuminate\Http\Request;
 use App\Model\Questions;
+use Illuminate\Support\Facades\Response;
 
 
 class ReplyController extends Controller
@@ -38,9 +39,11 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Questions $question, Request $request)
     {
-        //
+        //store method 
+        $reply = $question->replies()->create($request->all());
+        return \response(['reply' => $reply]);
     }
 
     /**
@@ -84,8 +87,11 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Questions $question, Reply $reply)
+
     {
         //
+        $reply->delete();
+        return \response('Berhasil Di Hapus!!!');
     }
 }
